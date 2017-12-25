@@ -1,33 +1,59 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  Text,
-  Button,
-  View
+    Text,
+    View,
+    TouchableOpacity,
+    Image,
+    Alert
 } from 'react-native';
 
 // formatações
 const styles = {
-  estiloTexto: {
-    fontSize: 40,
-    backgroundColor: '#08509B',
-    height: 60,
-    width: 60
-  },
-  estiloView: {
-    backgroundColor: 'skyblue',
-    height: 300,
-    justifyContent: 'center',
-    alignItems: 'flex-end'
-  }
+    principal: {
+        //backgroundColor: '#538530',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
+    },
+    botao: {
+        marginTop: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 40,
+        backgroundColor: '#538530'
+    },
+    textoBotao: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16
+    }
 };
 
+const gerarNovaFrase = () => {
+    var numeroAleatorio = Math.floor(Math.random()*5);
+
+    var frases = Array();
+    frases[0] = 'Primeira frase';
+    frases[1] = 'Segunda frase';
+    frases[2] = 'Terceira frase';
+    frases[3] = 'Quarta frase';
+    frases[4] = 'Quinta frase';
+
+    Alert.alert(frases[numeroAleatorio]);
+}
+
+// aplicação
 export default class App extends Component {
-  render() {
-    const { estiloTexto, estiloView } = styles;
-    return (
-      <View style={estiloView}>
-        <Text style={estiloTexto}></Text>
-      </View>
-    );
-  }
+    render() {
+        const {principal, botao, textoBotao} = styles;
+        return (
+            <View style={principal}>
+                <Image source={ require('./imgs/logo.png') }/>
+                <TouchableOpacity
+                    onPress={gerarNovaFrase}
+                    style={botao}>
+                    <Text style={textoBotao}>Nova frase</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
 }
